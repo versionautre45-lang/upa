@@ -3,8 +3,8 @@ import { X, Calendar, MapPin, Users, Clock, Tag, Award, Sparkles } from 'lucide-
 
 export default function NewsModal({ news, onClose }) {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-      <div className="flex justify-between items-center sticky p-4 z-10 top-0 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-t-lg">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+      <div className="flex justify-between items-center flex-shrink-0 p-6 z-10 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-t-2xl">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/20 rounded-lg">
             <Sparkles className="w-6 h-6" />
@@ -40,7 +40,7 @@ export default function NewsModal({ news, onClose }) {
         </div>
       </div>
 
-      <div className="p-8">
+      <div className="flex-1 overflow-y-auto p-8">
         <div className="grid md:grid-cols-4 gap-4 mb-8">
           <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl text-center border border-blue-200 dark:border-blue-800">
             <Calendar className="w-8 h-8 mx-auto mb-2 text-blue-600" />

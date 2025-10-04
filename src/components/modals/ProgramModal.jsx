@@ -4,6 +4,12 @@ import { X, Calendar, Clock, BookOpen, GraduationCap, Users, MapPin, CheckCircle
 export default function ProgramModal({ school, program, programKey, onClose }) {
   const [activeTab, setActiveTab] = useState('modules');
 
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   const scheduleData = program.schedule || {
     rentree: '15 Septembre 2025',
     finAnnee: '30 Juin 2026',
@@ -72,8 +78,10 @@ export default function ProgramModal({ school, program, programKey, onClose }) {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-      <div className={`sticky top-0 z-10 bg-gradient-to-r ${school.gradient} p-6 text-white rounded-t-lg`}>
+    <div
+      className="bg-white dark:bg-gray-800 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col"
+    >
+      <div className={`bg-gradient-to-r ${school.gradient} p-6 text-white rounded-t-2xl flex-shrink-0`}>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <img src={school.image} alt={school.code} className="w-14 h-14 rounded-lg shadow-lg" />
@@ -93,12 +101,12 @@ export default function ProgramModal({ school, program, programKey, onClose }) {
           </button>
         </div>
 
-        <div className="flex gap-2 mt-6 overflow-x-auto">
+        <div className="flex gap-2 mt-6 overflow-x-auto scrollbar-hide">
           <button
             onClick={() => setActiveTab('modules')}
-            className={`px-6 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
+            className={`px-6 py-2.5 rounded-xl font-medium transition-all whitespace-nowrap ${
               activeTab === 'modules'
-                ? 'bg-white text-gray-900'
+                ? 'bg-white text-gray-900 shadow-lg'
                 : 'bg-white/20 hover:bg-white/30'
             }`}
           >
@@ -107,9 +115,9 @@ export default function ProgramModal({ school, program, programKey, onClose }) {
           </button>
           <button
             onClick={() => setActiveTab('emploi')}
-            className={`px-6 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
+            className={`px-6 py-2.5 rounded-xl font-medium transition-all whitespace-nowrap ${
               activeTab === 'emploi'
-                ? 'bg-white text-gray-900'
+                ? 'bg-white text-gray-900 shadow-lg'
                 : 'bg-white/20 hover:bg-white/30'
             }`}
           >
@@ -118,9 +126,9 @@ export default function ProgramModal({ school, program, programKey, onClose }) {
           </button>
           <button
             onClick={() => setActiveTab('calendrier')}
-            className={`px-6 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
+            className={`px-6 py-2.5 rounded-xl font-medium transition-all whitespace-nowrap ${
               activeTab === 'calendrier'
-                ? 'bg-white text-gray-900'
+                ? 'bg-white text-gray-900 shadow-lg'
                 : 'bg-white/20 hover:bg-white/30'
             }`}
           >
@@ -129,9 +137,9 @@ export default function ProgramModal({ school, program, programKey, onClose }) {
           </button>
           <button
             onClick={() => setActiveTab('admission')}
-            className={`px-6 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
+            className={`px-6 py-2.5 rounded-xl font-medium transition-all whitespace-nowrap ${
               activeTab === 'admission'
-                ? 'bg-white text-gray-900'
+                ? 'bg-white text-gray-900 shadow-lg'
                 : 'bg-white/20 hover:bg-white/30'
             }`}
           >
@@ -141,7 +149,7 @@ export default function ProgramModal({ school, program, programKey, onClose }) {
         </div>
       </div>
 
-      <div className="p-8">
+      <div className="flex-1 overflow-y-auto p-8">
         {activeTab === 'modules' && (
           <div>
             <div className="mb-8">

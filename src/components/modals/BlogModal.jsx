@@ -10,8 +10,8 @@ export default function BlogModal({ data, onClose }) {
   const location = data.location || 'Campus UPA';
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg max-w-5xl w-full max-h-[85vh] overflow-y-auto shadow-2xl">
-      <div className="flex justify-between items-center sticky p-4 z-10 top-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-lg">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+      <div className="flex justify-between items-center flex-shrink-0 p-6 z-10 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-2xl">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/20 rounded-lg">
             <Tag className="w-5 h-5" />
@@ -37,7 +37,7 @@ export default function BlogModal({ data, onClose }) {
         </div>
       </div>
 
-      <div className="p-8">
+      <div className="flex-1 overflow-y-auto p-8">
         <div className="flex flex-wrap gap-4 mb-6 pb-6 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
             <Calendar className="w-5 h-5 text-blue-600" />

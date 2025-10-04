@@ -19,8 +19,8 @@ export default function ClubModal({ data, onClose }) {
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg max-w-5xl w-full max-h-[85vh] overflow-y-auto shadow-2xl">
-      <div className="flex justify-between items-center sticky p-4 z-10 top-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-t-lg">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+      <div className="flex justify-between items-center flex-shrink-0 p-6 z-10 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-t-2xl">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/20 rounded-lg">
             <Users className="w-6 h-6" />
@@ -49,7 +49,7 @@ export default function ClubModal({ data, onClose }) {
         </div>
       </div>
 
-      <div className="p-8">
+      <div className="flex-1 overflow-y-auto p-8">
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-6 rounded-xl text-center">
             <Users className="w-10 h-10 mx-auto mb-3 text-blue-600" />

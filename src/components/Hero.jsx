@@ -12,7 +12,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-gradient-to-br from-dark-950 via-dark-900 to-primary-950">
+    <section id="accueil" className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-gray-900 via-blue-950 to-gray-900">
       <div
         className="absolute inset-0 opacity-20"
         style={{
@@ -48,10 +48,10 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight"
             >
-              <span className="text-white block mb-2">Façonnez votre</span>
-              <span className="bg-gradient-to-r from-primary-400 via-primary-500 to-accent-gold bg-clip-text text-transparent">
+              <span className="text-white block mb-3">Façonnez votre</span>
+              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
                 Avenir Professionnel
               </span>
             </motion.h1>
@@ -74,14 +74,14 @@ const Hero = () => {
               className="flex flex-wrap gap-4"
             >
               <RouterLink to="/admission">
-                <button className="group px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white rounded-lg font-semibold transition-all duration-300 hover:shadow-glow flex items-center gap-2">
+                <button className="group px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white rounded-xl font-semibold transition-all duration-300 hover:shadow-glow shadow-lg flex items-center gap-2">
                   S'inscrire maintenant
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
               </RouterLink>
 
               <a href="#programmes">
-                <button className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-lg font-semibold backdrop-blur-sm transition-all duration-300">
+                <button className="px-8 py-4 bg-white/10 hover:bg-white/20 text-white border-2 border-white/30 hover:border-white/50 rounded-xl font-semibold backdrop-blur-sm transition-all duration-300">
                   Nos programmes
                 </button>
               </a>

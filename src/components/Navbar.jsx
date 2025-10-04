@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, GraduationCap } from 'lucide-react';
+import { Menu, X, GraduationCap, Home, Info, BookOpen, Users, FileText } from 'lucide-react';
 import logo from '../assets/logo.png';
 
 const navLinksByType = {
@@ -88,10 +88,22 @@ const Navbar = ({ type = 'home' }) => {
     return () => observer.current && observer.current.disconnect();
   }, [type]);
 
+  const getIconForLink = (label) => {
+    const icons = {
+      'Accueil': Home,
+      'À propos': Info,
+      'Programmes': BookOpen,
+      'Partenaires': Users,
+      'Vie étudiante': Users,
+      "S'inscrire": GraduationCap
+    };
+    return icons[label] || FileText;
+  };
+
   const renderLink = ({ href, label, type: linkType }) => {
     const isActive = linkType === 'anchor' && activeSection === href;
+    const Icon = getIconForLink(label);
 
-    // 🔹 Anchor spéciale : si href commence par "/#", on redirige vers home avec ancre
     if (linkType === 'anchor') {
       if (href.startsWith('/#')) {
         return (
@@ -105,7 +117,6 @@ const Navbar = ({ type = 'home' }) => {
         );
       }
 
-      // anchors normaux (home)
       return (
         <>
           <a
@@ -129,13 +140,14 @@ const Navbar = ({ type = 'home' }) => {
               setActiveSection(href);
               closeMenu();
             }}
-            className={`block lg:hidden px-6 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
+            className={`flex lg:hidden items-center gap-3 px-5 py-4 rounded-xl text-base font-medium transition-all duration-300 ${
               isActive
-                ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-dark-700/50'
+                ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30'
+                : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-700/50'
             }`}
           >
-            {label}
+            <Icon className="w-5 h-5" />
+            <span>{label}</span>
           </a>
         </>
       );
@@ -155,9 +167,10 @@ const Navbar = ({ type = 'home' }) => {
           <RouterLink
             to={href}
             onClick={closeMenu}
-            className="block lg:hidden px-6 py-3 rounded-lg text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-100 dark:hover:bg-dark-700/50 transition-all duration-300"
+            className="flex lg:hidden items-center gap-3 px-5 py-4 rounded-xl text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-700/50 transition-all duration-300"
           >
-            {label}
+            <Icon className="w-5 h-5" />
+            <span>{label}</span>
           </RouterLink>
         </>
       );
@@ -184,9 +197,10 @@ const Navbar = ({ type = 'home' }) => {
               setActiveSection('admissions');
               closeMenu();
             }}
-            className="block lg:hidden w-full text-center px-6 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-base font-semibold rounded-lg shadow-lg transition-all duration-300"
+            className="flex lg:hidden items-center justify-center gap-3 w-full px-6 py-4 bg-gradient-to-r from-primary-600 to-primary-700 text-white text-base font-semibold rounded-xl shadow-lg transition-all duration-300 mt-4"
           >
-            {label}
+            <GraduationCap className="w-5 h-5" />
+            <span>{label}</span>
           </RouterLink>
         </>
       );
@@ -244,47 +258,60 @@ const Navbar = ({ type = 'home' }) => {
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={closeMenu}
-          >
+          <>
             <motion.div
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={closeMenu}
+            />
+            <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white dark:bg-dark-900 shadow-2xl overflow-y-auto"
+              transition={{ type: 'spring', stiffness: 260, damping: 25 }}
+              className="fixed right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white dark:bg-dark-900 shadow-2xl overflow-y-auto z-50 lg:hidden"
             >
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-8">
+              <div className="flex flex-col h-full">
+                <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-dark-700">
                   <div className="flex items-center gap-3">
-                    <img src={logo} alt="Logo UPA" className="w-12" />
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-primary-600 opacity-20 blur-xl rounded-full" />
+                      <img src={logo} alt="Logo UPA" className="relative w-12 h-12 rounded-lg" />
+                    </div>
                     <div>
                       <h2 className="font-bold text-primary-600 dark:text-primary-400 text-lg">UPA</h2>
-                      <p className="text-xs text-gray-500 dark:text-gray-400">Menu</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 uppercase font-semibold">Menu</p>
                     </div>
                   </div>
                   <button
                     onClick={closeMenu}
-                    className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-dark-800 rounded-lg transition-colors"
+                    className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-dark-800 rounded-xl transition-colors"
+                    aria-label="Fermer le menu"
                   >
                     <X size={24} />
                   </button>
                 </div>
 
-                <nav className="space-y-2">
+                <nav className="flex-1 p-6 space-y-2 overflow-y-auto">
                   {navLinksByType[type]?.map((link) => (
                     <div key={link.href}>{renderLink(link)}</div>
                   ))}
                 </nav>
+
+                <div className="p-6 border-t border-gray-200 dark:border-dark-700 bg-gray-50 dark:bg-dark-800">
+                  <p className="text-xs text-center text-gray-500 dark:text-gray-400">
+                    Université Privée d'Ambohidratrimo
+                  </p>
+                  <p className="text-xs text-center text-primary-600 dark:text-primary-400 font-semibold mt-1">
+                    Toujours Plus Haut
+                  </p>
+                </div>
               </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

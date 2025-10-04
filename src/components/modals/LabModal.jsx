@@ -31,8 +31,8 @@ export default function LabModal({ data, onClose }) {
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-      <div className="flex justify-between items-center sticky p-4 z-10 top-0 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-t-lg">
+    <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col">
+      <div className="flex justify-between items-center flex-shrink-0 p-6 z-10 bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-t-2xl">
         <div className="flex items-center gap-3">
           <div className="p-2 bg-white/20 rounded-lg">
             <Microscope className="w-6 h-6" />
@@ -61,7 +61,7 @@ export default function LabModal({ data, onClose }) {
         </div>
       </div>
 
-      <div className="p-8">
+      <div className="flex-1 overflow-y-auto p-8">
         <div className="grid md:grid-cols-3 gap-6 mb-10">
           <div className="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-800/20 p-6 rounded-xl text-center border border-blue-200 dark:border-blue-800">
             <Users className="w-12 h-12 mx-auto mb-3 text-blue-600" />
